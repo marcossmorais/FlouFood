@@ -1,5 +1,5 @@
 /* #authView (login) ficou de fora de propósito: as telas de autenticação são
-   sempre light, fixadas pelo layout de (auth). */
+   sempre light, fixadas pelo script de tema do layout raiz e pelo AplicaTema. */
 html[data-admin-theme='dark'] #appView,
 html[data-admin-theme='dark'] .onboarding{
   --fundo:#101010;
