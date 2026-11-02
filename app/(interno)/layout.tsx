@@ -3,26 +3,6 @@ import './admin.css';
 import { AplicaTema } from '@/components/admin/AplicaTema';
 
 /**
- * Rotas de autenticação nunca entram em dark. A checagem é feita aqui, e não
- * só no layout de `(auth)`: se este script resolvesse dark primeiro e o de
- * `(auth)` corrigisse depois, existiria um instante com o atributo em dark
- * — o "pisca" que o usuário via ao abrir o login vindo do painel escuro.
- * Os dois pontos concordam desde o primeiro byte.
- */
-const SCRIPT_TEMA = `
-try {
-  var ehAuth = /^\\/entrar(\\/|$)/.test(location.pathname);
-  var temaSalvo = localStorage.getItem('cf_admin_theme');
-  var tema = ehAuth ? 'light' : (temaSalvo === 'dark' || temaSalvo === 'light'
-    ? temaSalvo
-    : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
-  document.documentElement.dataset.adminTheme = tema;
-} catch (_) {
-  document.documentElement.dataset.adminTheme = 'light';
-}
-`;
-
-/**
  * A casca precisa nascer vertical antes mesmo do chunk completo de CSS chegar.
  * Sem estas poucas regras críticas, uma conexão fria podia pintar os filhos da
  * sidebar na direção padrão e corrigi-los no quadro seguinte. No mobile ela
@@ -71,10 +51,9 @@ html,body{max-width:100%;overflow-x:hidden}
 export default function LayoutInterno({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <script dangerouslySetInnerHTML={{ __html: SCRIPT_TEMA }} />
       <style dangerouslySetInnerHTML={{ __html: ESTILO_CASCA_CRITICO }} />
-      {/* O script acima só roda em carga real de documento — script inserido
-          por dangerouslySetInnerHTML não executa. Este componente cobre a
+      {/* O tema da primeira pintura é resolvido pelo script do layout raiz,
+          que só roda em carga real de documento. Este componente cobre a
           entrada por navegação client-side. */}
       <AplicaTema />
       {children}

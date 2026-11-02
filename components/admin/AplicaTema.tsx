@@ -5,11 +5,10 @@ import { usePathname } from 'next/navigation';
 import { CHAVE_TEMA, EVENTO_TEMA } from './TemaAdmin';
 
 /**
- * Reforço do script de tema do layout `(interno)`.
+ * Reforço do script de tema do layout raiz (`app/layout.tsx`).
  *
- * Aquele script é inline via `dangerouslySetInnerHTML`, e o navegador NÃO
- * executa script inserido assim — só o que vem no HTML de uma carga real de
- * documento. Quem entrava no painel por navegação client-side (landing →
+ * Aquele script só roda numa carga real de documento — numa navegação
+ * client-side ele não executa de novo. Quem entrava no painel por navegação client-side (landing →
  * "Acessar conta" → login → dashboard) ficava com o tema errado: o painel
  * abria claro mesmo com o sistema em escuro, e só o F5 "acertava" sozinho.
  *
