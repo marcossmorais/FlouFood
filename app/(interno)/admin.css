@@ -159,10 +159,12 @@
   .onboarding-caixa .btn-ghost{ align-self: flex-start; margin-top: 6px; min-height: 44px; }
 
   /* ---------- TELA DE AUTENTICAÇÃO (login / escolher loja / criar loja) ---------- */
-  #authView{ padding: 40px 20px 80px; background: var(--fundo-2); min-height:100vh; }
-  #authView .wrap{ max-width: 880px; margin: 0 auto; }
-  #authView .brand-logo{ margin-bottom: 22px; }
-  #loginCard{ max-width: 380px; }
+  #authView{
+    padding: 40px 20px; background: var(--fundo-2); min-height:100vh;
+    display:flex; align-items:center; justify-content:center;
+  }
+  #authView .wrap{ width: 100%; max-width: 380px; }
+  #authView .brand-logo{ margin-bottom: 22px; justify-content:center; }
 
   /* ---------- SHELL DO PAINEL (menu lateral + conteúdo) ---------- */
   #appView{ display:none; width:100%; min-width:0; max-width:100vw; overflow-x:clip; }
